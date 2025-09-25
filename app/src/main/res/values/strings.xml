@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Financial Tracker</string>
+    <string name="btAdd">+</string>
+    <string name="btDelete">Удалить</string>
+    <string name="btDone">Готово</string>
+    <string name="btCancel">Отмена</string>
+</resources>
