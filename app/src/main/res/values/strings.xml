@@ -4,4 +4,5 @@
     <string name="btDelete">Удалить</string>
     <string name="btDone">Готово</string>
     <string name="btCancel">Отмена</string>
+    <string name="title_activity_edit_shablon">edit_shablon</string>
 </resources>
