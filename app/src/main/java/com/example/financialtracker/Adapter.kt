@@ -1,15 +1,17 @@
 package com.example.financialtracker
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 
 
-class Adapter( var data: ArrayList<Item>): RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter( var data: ArrayList<Item>,private val onDelete: (Int) -> Unit): RecyclerView.Adapter<Adapter.ViewHolder>() {
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         var tvText = view.findViewById<TextView>(R.id.tvText)
         var btDel = view.findViewById<Button>(R.id.btDel)
@@ -34,7 +36,7 @@ class Adapter( var data: ArrayList<Item>): RecyclerView.Adapter<Adapter.ViewHold
         holder.tvText.text = item.number.toString()
 
         holder.btDel.setOnClickListener {
-
+            onDelete(holder.bindingAdapterPosition)
         }
     }
 

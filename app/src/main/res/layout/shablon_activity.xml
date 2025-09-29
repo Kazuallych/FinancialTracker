@@ -3,35 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#FAF9F9">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="396dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/btDel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#CE4C4C"
-                android:text="@string/btDelete"
-                android:textColor="#EBE6E6" />
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
+    <Button
+        android:id="@+id/btDel"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="0"
+        android:background="@drawable/trash"
+        android:backgroundTint="#595555"
+        android:textColor="#EBE6E6"
+        app:layout_constraintEnd_toEndOf="@+id/tvText"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

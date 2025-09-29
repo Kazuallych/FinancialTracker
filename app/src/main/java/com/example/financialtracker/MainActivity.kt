@@ -2,6 +2,7 @@ package com.example.financialtracker
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -35,7 +36,11 @@ class MainActivity : ComponentActivity() {
         data = ArrayList()
         data.add(Item(1000,false))
 
-        adapter = Adapter(data)
+        adapter = Adapter(data,
+            {position->
+                data.removeAt(position)
+                adapter.notifyItemRemoved(position)
+            })
         binding.rcView.layoutManager = LinearLayoutManager(this)
         binding.rcView.adapter = adapter
 
@@ -43,6 +48,9 @@ class MainActivity : ComponentActivity() {
             result: ActivityResult ->
             if(result.resultCode == RESULT_OK){
                 val newItem = Item(result.data?.getStringExtra("numberAdd")!!.toInt(),false)
+                if(result.data?.getStringExtra("transactionAdd")=="Доход"){
+                    newItem.transaction =true
+                }
                 data.add(newItem)
                 adapter.notifyItemInserted(data.size-1)
             }
