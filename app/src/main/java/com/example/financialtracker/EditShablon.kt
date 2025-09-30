@@ -2,10 +2,10 @@ package com.example.financialtracker
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.financialtracker.databinding.EditShablonActivityBinding
 
@@ -16,8 +16,12 @@ class EditShablon : ComponentActivity() {
         binding = EditShablonActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if(intent.getStringExtra("code")=="1"){
+            binding.edText.setText(intent.getStringExtra("edNumber").toString())
+        }
+
         val items = listOf("Доход","Расход")
-        var selectedItem = "123"
+        var selectedItem = String()
 
         val adapter = ArrayAdapter(
             this,
@@ -33,12 +37,14 @@ class EditShablon : ComponentActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
             }
         }
 
-
         binding.btDone.setOnClickListener {
+            if(binding.edText.text.toString()==""){
+                binding.edText.error = "Не все поля заполены!"
+                return@setOnClickListener
+            }
             val intent = Intent()
             intent.putExtra("numberAdd",binding.edText.text.toString())
             intent.putExtra("transactionAdd",selectedItem)

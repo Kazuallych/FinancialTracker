@@ -11,8 +11,8 @@ import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 
 
-class Adapter( var data: ArrayList<Item>,private val onDelete: (Int) -> Unit): RecyclerView.Adapter<Adapter.ViewHolder>() {
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+class Adapter( var data: ArrayList<Item>,private val onDelete: (Int) -> Unit,private val onEdit: (Item) -> Unit): RecyclerView.Adapter<Adapter.ViewHolder>() {
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var tvText = view.findViewById<TextView>(R.id.tvText)
         var btDel = view.findViewById<Button>(R.id.btDel)
     }
@@ -29,7 +29,6 @@ class Adapter( var data: ArrayList<Item>,private val onDelete: (Int) -> Unit): R
             holder.tvText.setTextColor("#00e600".toColorInt())
         }
         else{
-            item.number -= item.number*2
             holder.tvText.setTextColor("#FF0000".toColorInt())
         }
 
@@ -37,6 +36,10 @@ class Adapter( var data: ArrayList<Item>,private val onDelete: (Int) -> Unit): R
 
         holder.btDel.setOnClickListener {
             onDelete(holder.bindingAdapterPosition)
+        }
+
+        holder.itemView.setOnClickListener {
+            onEdit(item)
         }
     }
 
